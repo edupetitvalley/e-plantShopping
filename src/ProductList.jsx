@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import './ProductList.css'
 import CartItem from './CartItem';
+import { addItem } from './CartSlice';
+
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
+    const dispatch = useDispatch();
+    const [addedToCart, setAddedToCart] = useState({}); //objeto vacio objeto=pares clave-valor
+  //en un futuro será algo como 
+  // {
+  //   "Aloe Vera": true,
+  //   "Cactus": true
+  // }
 
     const plantsArray = [
       {
@@ -242,6 +253,7 @@ function ProductList({ onHomeClick }) {
         e.preventDefault();
         setShowCart(true); // Set showCart to true when cart icon is clicked
     };
+
     const handlePlantsClick = (e) => {
         e.preventDefault();
         setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
@@ -252,6 +264,20 @@ function ProductList({ onHomeClick }) {
         e.preventDefault();
         setShowCart(false);
     };
+    
+    const handleAddToCart = (product) => {
+      dispatch(addItem(product)); // Dispatch the action to add the product to the cart (Redux action) GLOBAL STATE (REdux)
+      // e.preventDefault();
+      setAddedToCart(prevState => ({ //local state
+        ...prevState,
+        [product.name]: true, //
+      }));
+      
+        console.log("Product: " + product.name);
+        console.log("Product: " + product.description);
+      
+    };
+    
     return (
         <div>
             <div className="navbar" style={styleObj}>
@@ -290,7 +316,7 @@ function ProductList({ onHomeClick }) {
                       <div className="product-title">{plant.name}</div> {/* Display plant name */}
                       {/* Display other plant details like description and cost */}
                       <div className="product-description">{plant.description}</div> {/* Display plant description */}
-                      <div className="product-cost">${plant.cost}</div> {/* Display plant cost */}
+                      <div className="product-cost">{plant.cost}</div> {/* Display plant cost */}
                       <button
                         className="product-button"
                         onClick={() => handleAddToCart(plant)} // Handle adding plant to cart
