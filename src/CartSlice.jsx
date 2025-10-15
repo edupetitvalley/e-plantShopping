@@ -17,6 +17,7 @@ export const CartSlice = createSlice({
       if (existingItem) {
         // If item already exists in the cart, increase its quantity
         existingItem.quantity++;
+        console.log("existingItem.quantity : " + existingItem.quantity);
       } else {
         // If item does not exist, add it to the cart with quantity 1
         state.items.push({ name, image, cost, quantity: 1 });
@@ -36,18 +37,18 @@ export const CartSlice = createSlice({
     removeItem: (state, action) => {
       const { name } = action.payload; // Destructure product details from the action payload
 
-      const existingItem = state.items.find(item => item.name === name);
-      if (existingItem) {
-        // If item already exists in the cart, increase its quantity
-        existingItem.quantity--;
-      } else {
-        // If item does not exist, add it to the cart with quantity 1
-        state.items.filter(item => item.name !== name.payload);
+      console.clear();
+      console.log("action.payload :; " + action.payload);
+      // const existingItem = state.items.find(item => item.name === name);
+      // state.items.filter(item => item.name !== name.payload);
+      state.items = state.items.filter(item => item.name !== name);
+      //classic JS
+      // state.items.filter(function (item) {
+        //   return item.name !== action.payload;
+        // });
         console.clear();
-        for (const key in state) {
-          console.log(`${key}:`, state[key]);
-        }
-      }
+        console.log("action.payload :; " + action.payload);
+      
     },
     updateQuantity: (state, action) => {
       const { name, quantity } = action.payload; // 

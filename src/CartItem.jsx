@@ -1,10 +1,15 @@
 import React from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
+  
+  // const [addedToCart, setAddedToCart] = useState({}); //objeto vacio objeto=pares clave-valor
+  const [removedFromCart, setRemovedFromCart] = useState({}); //objeto vacio objeto=pares clave-valor
+  
   const dispatch = useDispatch();
 
   // Calculate total amount for all products in the cart
@@ -26,8 +31,15 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleRemove = (item) => {
+    console.log("remove");
+    // dispatch(addItem(product)); // Dispatch the action to add the product to the cart (Redux action) GLOBAL STATE (REdux)
+    dispatch(removeItem(item)); // Dispatch the action to add the product to the cart (Redux action) GLOBAL STATE (REdux)
+    // e.preventDefault();
+    setRemovedFromCart(prevState => ({ //local state
+      ...prevState,
+      [item.name]: true, //
+    }));
   };
-
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
   };
