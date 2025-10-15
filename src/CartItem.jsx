@@ -14,7 +14,27 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
- 
+    console.clear();
+    // // let total = 0;
+    // cart.forEach((product) => {
+    //   //cart.forEach(function(product) {
+    //   const quantity = product.quantity;
+    //   const cost = product.cost;
+    //   console.log(`Quantity: ${quantity}, Cost: ${cost}`);
+    //   const total = cart.reduce((acc, item) => acc + item.quantity * item.cost, 0);
+    //   console.log(`total: ${total}`);
+    
+    // total +=  quantity * cost;
+    //});
+    const total = cart.reduce((acc, item) => acc + item.quantity * item.cost, 0);
+    console.log(`total: ${total}`);
+    return total;
+
+
+    // const plantas = useSelector(state => state.cart.items);
+    // cart.forEach(plantas => planta.quan)
+    // const precios = plantas.map(planta => planta.cost * planta.quantity);
+    //   console.log("precios  = " + precios)  
   };
 
   const handleContinueShopping = (e) => {
