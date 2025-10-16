@@ -54,6 +54,7 @@ const CartItem = ({ onContinueShopping }) => {
     // console.log("remove");
     // dispatch(addItem(product)); // Dispatch the action to add the product to the cart (Redux action) GLOBAL STATE (REdux)
     dispatch(removeItem(item)); // Dispatch the action to add the product to the cart (Redux action) GLOBAL STATE (REdux)
+    //dispatch(removeItem(item.name));
     // e.preventDefault();
     setRemovedFromCart(prevState => ({ //local state
       ...prevState,

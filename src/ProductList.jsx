@@ -286,12 +286,12 @@ function ProductList({ onHomeClick }) {
     //   }));
     };
 
-    const showNumberCartItems = (item) => {
+    const calculateTotalQuantity = (item) => {
         // console.log("cart : " + JSON.stringify(cart));
         // console.log("hello?" );
         // return (cart.length)
         const totalUnits = cart.reduce((sum, item) => sum + item.quantity, 0);
-
+        // return CartItems ? CartItems.reduce((total, item) => total + item.quantity, 0) : 0;
         return totalUnits;
         // const total = cart.reduce((acc, item) => acc + item.quantity * item.cost, 0);
         // // console.log(`total: ${total}`);
@@ -325,7 +325,7 @@ function ProductList({ onHomeClick }) {
                         fill="white"
                         fontWeight="bold"
                     >
-                        {showNumberCartItems()}
+                        {calculateTotalQuantity()}
                     </text></svg></h1></a></div>
                 </div> 
                
