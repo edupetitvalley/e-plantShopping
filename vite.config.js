@@ -4,6 +4,6 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   // base: "/shoppingreact", //localhost
-  base: "/conference_event_planner", //github pages
+  base: "/e-plantShopping/", //github pages
   plugins: [react()],
 })
