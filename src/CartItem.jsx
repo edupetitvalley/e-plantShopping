@@ -28,13 +28,7 @@ const CartItem = ({ onContinueShopping }) => {
     //});
     const total = cart.reduce((acc, item) => acc + item.quantity * item.cost, 0);
     // console.log(`total: ${total}`);
-    return total;
-
-
-    // const plantas = useSelector(state => state.cart.items);
-    // cart.forEach(plantas => planta.quan)
-    // const precios = plantas.map(planta => planta.cost * planta.quantity);
-    //   console.log("precios  = " + precios)  
+    return total;  
   };
 
   const handleIncrement = (item) => {

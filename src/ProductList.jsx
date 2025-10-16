@@ -16,6 +16,8 @@ function ProductList({ onHomeClick }) {
   //   "Cactus": true
   // }
     const cart = useSelector(state => state.cart.items);
+    // const [bgColorAdded, setBgColorAdded] = useState({ "product-button": '#c1c1cdff'});
+
 
     const plantsArray = [
       {
@@ -267,20 +269,25 @@ function ProductList({ onHomeClick }) {
     };
     
     const handleAddToCart = (product) => {
+      console.log("product : " + JSON.stringify(product));
+
       dispatch(addItem(product)); // Dispatch the action to add the product to the cart (Redux action) GLOBAL STATE (REdux)
       // e.preventDefault();
       setAddedToCart(prevState => ({ //local state
         ...prevState,
         [product.name]: true, //
       }));
+      //TODO
+      //   After a user clicks the "Add to Cart" button for a plant item, the button should become disabled and grayed out, and its label should update to "Added to Cart" to indicate that the item has already been added.
       
-        // console.log("Product: " + product.name);
-        // console.log("Product: " + product.description);
-      
+    //   setBgColorAdded(prevState => ({ //local state
+    //       ...prevState,
+    //       ["product-button"]: "gray", //
+    //   }));
     };
 
     const showNumberCartItems = (item) => {
-        console.log("cart : " + JSON.stringify(cart));
+        // console.log("cart : " + JSON.stringify(cart));
         // console.log("hello?" );
         // return (cart.length)
         const totalUnits = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -344,7 +351,7 @@ function ProductList({ onHomeClick }) {
                       <div className="product-cost">${plant.cost}</div> {/* Display plant cost */}
                       <button
                         className="product-button"
-                        onClick={() => handleAddToCart(plant)} // Handle adding plant to cart
+                              onClick={() => handleAddToCart(plant)} // Handle adding plant to cart
                       >
                         Add to Cart
                       </button>
